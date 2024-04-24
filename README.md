@@ -101,6 +101,121 @@ public void add(String name) {
 #### What are most prefer return or throw an error
 * **Đối với tôi, việc đưa ra lỗi sẽ an toàn hơn nhiều vì bạn có thể đảm bảo rằng phần còn lại của mã sẽ không thực thi nếu xác thực được kích hoạt, không giống như lỗi trả về có thể ẩn nấp nếu mã tiếp tục thực thi sau khi xác thực được kích hoạt.**
 
+## What is class
+* **Class acts like a blueprint to create an object that has properties = fields and behavior = methods.**
+## What is abstract class and method
+### Abstract Class
+* **Used for not to create uncessary object**
+* **Abstract class cannot be instantiate or created**
+### Abstract Method
+* **Abstract method is a method that has no implementation/body**
+* **Abstract method is meant to be overwritten.**
+## What is interface
+* **By default methods in interface are public and abstract**
+* **By default fields in interface are public, final and static.**
+* **Used when you need multiple inheritance.**
+* **Used when you need just a contract that implementing class can do what method is declared in interface.**
+* **Used when you dont need class heirarchy because interfaces bypass class heirarchy.**
+* **Interface can have static methods and default methods**
+## Difference between static and default method in interface
+* **They both need a body/implementatiom when declared in interface**
+* **Default method: Can be overwritten.**
+* **Static method: Cannot be overwritten.**
+## Inheritance
+* **Used to achieve polymorphism**
+* **Inheritance is used if theres a common fields and methods to make code reusable and readable.**
+* **Also if you want to have a relation between to classes to mimic real world objects.**
+```
+public class Animal {
+  private String name;
+  public void eat() {}
+}
 
+
+public class Dog extends Animal {
+  private String breed;
+  public Dog(String name, String breed) {
+    super(name);
+    this.breed = breed;
+  }
+
+  @Override
+  public void eat() {}
+}
+```
+## Three types of inheritance
+* **Single level: Class that extends in another class.**
+* **Multi level: Extending to a class that extends to another class**
+* **Heirarchial: The parent class has 1 or more child class.**
+* ![](./inheritance.jpg)
+**Note: statics can be inherited but cannot be overwritten.**
+## Polymorphism
+* **Poly có nghĩa là nhiều và hình thái có nghĩa là có nhiều cách biểu diễn.**
+### Two types of Polymorphism
+* **Static/ Compile time Polymorphism:** Achieved via method overloading meaning methods that have same name but return type, parameters types, and parameter ordering are not the same. Basically methods that only the same name are called method overloading.
+```
+public void m1() { }
+public void m1(DataType arg1) { }
+```
+* **Dynamic/ Runtime Polymorphism:** Achieved via method overriding meaning child class can do what is declared in parent class but has its own implementation or behavior.
+```
+public class Person {
+  public void greet() { }
+}
+
+public class Student extends Person {
+  @Override
+   public void greet() {
+     System.out.println("Student is greeting");
+   }
+}
+
+public class Teacher extends Person {
+  @Override
+  public void greet() {
+    System.out.println("Teacher is greeting");
+  }
+}
+
+// As you can see student and teacher are extending in person class that has greet method but when they override that method thats it you have polymorphism and they are now have their behavior how to do greet.
+```
+**Note: You cannot achieve method overriding without inheritance.**
+## Encapsulation
+* **Implementation level**
+* **Wrapping up the implementation data members and methods in a class. Used for data hiding.**\
+You can achieve this by simply using getters and setters.\
+Usage of private and final keywords to hide and control what other class can access.
+## Abstraction
+* **Design level**
+* **Meaning hiding unecessary details and only showing valuable information.**
+* **For example: Khi bạn có xe và chìa khóa, bạn khởi động xe bằng chìa khóa và thế là xe hoạt động ngay. Nhưng làm thế nào để chìa khóa khởi động xe thì thông tin này chúng ta không cần biết nhưng quyền quan trọng của nó là việc kiêng cữ có nghĩa là che giấu những chi tiết không cần thiết và chỉ hiển thị những thông tin có giá trị.**
+* **Example 2: There are two type of motor right manual that has clutch and automatic has only has accelerator and dont have clutch. Automatic abstracts the clutch that we dont need to manually manage the clutch instead automatically handling it behind the scenes that we dont to care about.**
+## Difference of this and super keyword
+* **this: is used to reference the methods and fields of current object.**
+```
+public class Foo {
+  private String bar;
+  public void Foo(String bar) {
+    this.bar = bar;
+    // here the this keyword contains the current class methods and variables that you can access.
+  }
+}
+```
+* **super: used to reference the methods and fields of super class.**
+```
+public class Foo {
+  public void greet() {
+  // Code here
+  }
+}
+
+public class Bar extends Foo {
+  @Override
+  public void greet() {
+    super.greet(); // Will call the super class greet() method
+    this.greet() // Will call the this current class greet() method
+  }
+}
+```
 
 
